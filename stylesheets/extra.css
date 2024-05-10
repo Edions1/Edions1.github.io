@@ -59,6 +59,7 @@ h1{
 .hmimg{
   width: 100%;
   height: auto;
+  border-radius: 50%;
 }
 .wikilink{
   color: #3ae779 !important;
