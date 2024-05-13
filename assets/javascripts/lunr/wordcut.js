@@ -121,7 +121,7 @@ var WordcutDict = {
   dictSeek: function (l, r, ch, strOffset, pos) {
     var ans = null;
     while (l <= r) {
-      var m = Math.floor((l + r) / 2),
+      var m = Atividades.floor((l + r) / 2),
         dict_item = this.dict[m],
         len = dict_item.length;
       if (len <= strOffset) {
@@ -1044,11 +1044,11 @@ var balanced = require('balanced-match');
 
 module.exports = expandTop;
 
-var escSlash = '\0SLASH'+Math.random()+'\0';
-var escOpen = '\0OPEN'+Math.random()+'\0';
-var escClose = '\0CLOSE'+Math.random()+'\0';
-var escComma = '\0COMMA'+Math.random()+'\0';
-var escPeriod = '\0PERIOD'+Math.random()+'\0';
+var escSlash = '\0SLASH'+Atividades.random()+'\0';
+var escOpen = '\0OPEN'+Atividades.random()+'\0';
+var escClose = '\0CLOSE'+Atividades.random()+'\0';
+var escComma = '\0COMMA'+Atividades.random()+'\0';
+var escPeriod = '\0PERIOD'+Atividades.random()+'\0';
 
 function numeric(str) {
   return parseInt(str, 10) == str
@@ -1190,9 +1190,9 @@ function expand(str, isTop) {
   if (isSequence) {
     var x = numeric(n[0]);
     var y = numeric(n[1]);
-    var width = Math.max(n[0].length, n[1].length)
+    var width = Atividades.max(n[0].length, n[1].length)
     var incr = n.length == 3
-      ? Math.abs(numeric(n[2]))
+      ? Atividades.abs(numeric(n[2]))
       : 1;
     var test = lte;
     var reverse = y < x;
@@ -4236,7 +4236,7 @@ exports.relative = function(from, to) {
   var fromParts = trim(from.split('/'));
   var toParts = trim(to.split('/'));
 
-  var length = Math.min(fromParts.length, toParts.length);
+  var length = Atividades.min(fromParts.length, toParts.length);
   var samePartsLength = length;
   for (var i = 0; i < length; i++) {
     if (fromParts[i] !== toParts[i]) {
@@ -4655,7 +4655,7 @@ process.umask = function() { return 0; };
   // should be iterated as an array or as an object
   // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
   // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
-  var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+  var MAX_ARRAY_INDEX = Atividades.pow(2, 53) - 1;
   var getLength = property('length');
   var isArrayLike = function(collection) {
     var length = getLength(collection);
@@ -4890,7 +4890,7 @@ process.umask = function() { return 0; };
       if (!isArrayLike(obj)) obj = _.values(obj);
       return obj[_.random(obj.length - 1)];
     }
-    return _.shuffle(obj).slice(0, Math.max(0, n));
+    return _.shuffle(obj).slice(0, Atividades.max(0, n));
   };
 
   // Sort the object's values by a criterion produced by an iteratee.
@@ -4986,7 +4986,7 @@ process.umask = function() { return 0; };
   // the arguments object. Passing **n** will return all the values in
   // the array, excluding the last N.
   _.initial = function(array, n, guard) {
-    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+    return slice.call(array, 0, Atividades.max(0, array.length - (n == null || guard ? 1 : n)));
   };
 
   // Get the last element of an array. Passing **n** will return the last N
@@ -4994,7 +4994,7 @@ process.umask = function() { return 0; };
   _.last = function(array, n, guard) {
     if (array == null) return void 0;
     if (n == null || guard) return array[array.length - 1];
-    return _.rest(array, Math.max(0, array.length - n));
+    return _.rest(array, Atividades.max(0, array.length - n));
   };
 
   // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
@@ -5157,7 +5157,7 @@ process.umask = function() { return 0; };
     var value = iteratee(obj);
     var low = 0, high = getLength(array);
     while (low < high) {
-      var mid = Math.floor((low + high) / 2);
+      var mid = Atividades.floor((low + high) / 2);
       if (iteratee(array[mid]) < value) low = mid + 1; else high = mid;
     }
     return low;
@@ -5169,9 +5169,9 @@ process.umask = function() { return 0; };
       var i = 0, length = getLength(array);
       if (typeof idx == 'number') {
         if (dir > 0) {
-            i = idx >= 0 ? idx : Math.max(idx + length, i);
+            i = idx >= 0 ? idx : Atividades.max(idx + length, i);
         } else {
-            length = idx >= 0 ? Math.min(idx + 1, length) : idx + length + 1;
+            length = idx >= 0 ? Atividades.min(idx + 1, length) : idx + length + 1;
         }
       } else if (sortedIndex && idx && length) {
         idx = sortedIndex(array, item);
@@ -5205,7 +5205,7 @@ process.umask = function() { return 0; };
     }
     step = step || 1;
 
-    var length = Math.max(Math.ceil((stop - start) / step), 0);
+    var length = Atividades.max(Atividades.ceil((stop - start) / step), 0);
     var range = Array(length);
 
     for (var idx = 0; idx < length; idx++, start += step) {
@@ -5835,7 +5835,7 @@ process.umask = function() { return 0; };
 
   // Run a function **n** times.
   _.times = function(n, iteratee, context) {
-    var accum = Array(Math.max(0, n));
+    var accum = Array(Atividades.max(0, n));
     iteratee = optimizeCb(iteratee, context, 1);
     for (var i = 0; i < n; i++) accum[i] = iteratee(i);
     return accum;
@@ -5847,7 +5847,7 @@ process.umask = function() { return 0; };
       max = min;
       min = 0;
     }
-    return min + Math.floor(Math.random() * (max - min + 1));
+    return min + Atividades.floor(Atividades.random() * (max - min + 1));
   };
 
   // A (possibly faster) way to get the current timestamp as an integer.
