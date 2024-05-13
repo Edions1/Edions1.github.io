@@ -87,6 +87,12 @@ h1{
   background-color: #1d2021;
 }
 
+.md-sidebar__scrollwrap{
+  height: 100vh;
+  scrollbar-color: #ffffff00 transparent;
+  padding-bottom: 120px;
+}
+
 /*Target All Links inside of a class
 a.md-nav__link:link{
   font-weight: normal !important;
